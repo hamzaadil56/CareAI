@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from app.routes import donors, patients
+from routes import donors, patients
+import uvicorn
 
 app = FastAPI()
 
@@ -9,6 +10,8 @@ app.include_router(donors.router, prefix="/donors", tags=["Donors"])
 app.include_router(patients.router, prefix="/patients", tags=["Patients"])
 
 # Root route with links
+
+
 @app.get("/", response_class=HTMLResponse)
 async def root():
     html_content = """
@@ -16,7 +19,7 @@ async def root():
         <head>
             <title>Care AI</title>
         </head>
-         
+        <body>
             <h1>Care AI</h1>
             
             <ul style="list-style: none;">
@@ -27,3 +30,7 @@ async def root():
     </html>
     """
     return html_content
+
+# Add this block to run the server directly
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

@@ -1,7 +1,8 @@
 from fastapi import APIRouter
-from app.database import patients_db
+from database import patients_db
 
 router = APIRouter()
+
 
 @router.get("/")
 async def get_patient_dashboard():

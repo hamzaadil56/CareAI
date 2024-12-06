@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from app.models import Donation
-from app.database import patients_db, donations_db
+from models import Donation
+from database import patients_db, donations_db
 
 router = APIRouter()
+
 
 @router.get("/")
 async def get_all_patients():
@@ -34,7 +35,8 @@ async def donate_to_patient(donation: Donation):
     Allow donors to donate to a patient.
     """
     # Find patient
-    patient = next((p for p in patients_db if p["id"] == donation.patient_id), None)
+    patient = next(
+        (p for p in patients_db if p["id"] == donation.patient_id), None)
     if not patient:
         raise HTTPException(status_code=404, detail="Patient not found")
 
