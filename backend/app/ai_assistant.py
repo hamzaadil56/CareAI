@@ -6,11 +6,12 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
+import json
 from database import patients_db
 
 
 class DiseaseSeverityScorer:
-    def __init__(self, api_key):
+    def __init__(self):
         """
         Initialize the Disease Severity Scorer
 
@@ -22,7 +23,7 @@ class DiseaseSeverityScorer:
         # Initialize the language model
         self.llm = ChatGroq(
             model="llama-3.1-70b-versatile",
-            api_key=api_key
+
         )
 
         # Define a prompt template for severity assessment
@@ -41,6 +42,19 @@ class DiseaseSeverityScorer:
             7-10: Severe (significant impact, urgent medical attention needed)
             
             Respond ONLY with the numeric severity score (1-10).
+            """
+        )
+
+        self.priority_prompt = PromptTemplate(
+            input_variables=["severity_score",
+                             "amount_required", "amount_paid"],
+            template="""
+            Given the severity score of {severity_score},{amount_paid} and {amount_required}, provide a priority score from 1 to 10, where:
+            1-3: Low (minimal impact on daily life)
+            4-6: Medium (noticeable impact, may require treatment)
+            7-10: High (significant impact, urgent medical attention needed)
+
+            Respond ONLY with the numeric priority score (1-10).
             """
         )
 
@@ -91,6 +105,34 @@ class DiseaseSeverityScorer:
             print(f"Error calculating severity: {e}")
             return 5  # Default to moderate severity
 
+    def calculate_priority_score(self, severity_score, amount_required, amount_paid):
+        """
+        Calculate priority score using LLM
+
+        :param severity_score: Severity score of the condition
+        :param amount_required: Amount required for the condition
+        :param amount_paid: Amount paid for the condition
+        :return: Priority score (1-10)
+        """
+        # Create a chain for priority assessment
+        priority_chain = (
+            self.priority_prompt
+            | self.llm
+            | StrOutputParser()
+        )
+
+        # Invoke the chain to get priority score
+        try:
+            priority_score = int(priority_chain.invoke({
+                "severity_score": severity_score,
+                "amount_required": amount_required,
+                "amount_paid": amount_paid
+            }))
+            return max(1, min(priority_score, 10))  # Clamp between 1-10
+        except Exception as e:
+            print(f"Error calculating priority: {e}")
+            return 5  # Default to medium priority
+
     def process_patient_data(self, file_path):
         """
         Process entire patient dataset and add severity scores
@@ -119,6 +161,14 @@ class DiseaseSeverityScorer:
             ),
             axis=1
         )
+        patient_data['priority_score'] = patient_data.apply(
+            lambda row: self.calculate_priority_score(
+                row.get('severity_score', 0),
+                row.get('amount_required', 0),
+                row.get('amount_paid', 0)
+            ),
+            axis=1
+        )
         # patient_data['severity_score'] = self.calculate_severity_score(
         #     patient_data['disease'],
 
@@ -130,10 +180,9 @@ class DiseaseSeverityScorer:
 # Example usage
 if __name__ == "__main__":
     # Replace with your actual Groq API key
-    GROQ_API_KEY = "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"
 
     # Initialize the scorer
-    scorer = DiseaseSeverityScorer(GROQ_API_KEY)
+    scorer = DiseaseSeverityScorer()
 
     # Example of scoring a single condition
     # single_score = scorer.calculate_severity_score(
@@ -146,6 +195,14 @@ if __name__ == "__main__":
     # Example of processing a patient data file
     try:
         processed_data = scorer.process_patient_data('patient_data.csv')
-        print(processed_data)
+        processed_json = processed_data.to_json(orient='records')
+
+        # If you want to parse it back to a Python object
+        processed_json_parsed = json.loads(processed_json)
+
+# Print or use the JSON
+        print(processed_json)
+        print("\nParsed JSON:")
+        print(json.dumps(processed_json_parsed, indent=2))
     except Exception as e:
         print(f"Error processing patient data: {e}")
