@@ -6,8 +6,9 @@ patients_db = [
         "treatment": "Chemotherapy",
         "amount_required": 5000.0,
         "amount_paid": 2000.0,
-        "priority_score": 8,
         "donation_allotted": 1500.0,
+        "symptoms": "Fatigue, unexplained weight loss, lump in breast",
+        "duration": "6 months"
     },
     {
         "id": 2,
@@ -15,9 +16,11 @@ patients_db = [
         "treatment": "Bypass Surgery",
         "amount_required": 8000.0,
         "amount_paid": 3000.0,
-        "priority_score": 9,
         "donation_allotted": 2500.0,
+        "symptoms": "Chest pain, shortness of breath, fatigue",
+        "duration": "1 year"
     },
 ]
+
 
 donations_db = []
