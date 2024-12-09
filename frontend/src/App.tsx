@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CareAIDashboard = () => {
   const [donations, setDonations] = useState<any>([]);
