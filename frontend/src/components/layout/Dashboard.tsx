@@ -1,37 +1,11 @@
 import { Outlet } from "react-router";
-import React, { useState, useEffect } from "react";
-import { LayoutDashboard, Users, DollarSign, Plus, Menu } from "lucide-react";
+import { useState } from "react";
+import { LayoutDashboard, Users, DollarSign, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import axios from "axios";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 export default function Dashboard() {
-  const [donations, setDonations] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-  const [newDonation, setNewDonation] = useState({
-    patientId: "",
-    amount: "",
-  });
-  const [patients, setPatients] = useState([]);
+
   return (
     <div className="flex h-screen text-2xl">
       <div

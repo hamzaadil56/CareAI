@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -51,7 +51,7 @@ const AdminPage = () => {
   });
 
   // Handle form submission
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setSubmitError(null);
     setSubmitSuccess(false);
@@ -72,12 +72,12 @@ const AdminPage = () => {
         throw new Error("Failed to register patient");
       }
 
-      const result = await response.json();
+      await response.json();
       setSubmitSuccess(true);
       form.reset(); // Reset form after successful submission
-    } catch (error) {
+    } catch (error: any) {
       console.error("Submission error:", error);
-      setSubmitError(error.message);
+      setSubmitError(error?.message);
     } finally {
       setIsSubmitting(false);
     }

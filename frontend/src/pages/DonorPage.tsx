@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import PatientsTable from "@/components/patientsTable";
 
 const DonorPage = () => {
-  const [donationAmount, setDonationAmount] = useState("");
+  const [donationAmount, setDonationAmount] = useState<any>("");
   const [message, setMessage] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Handle donation amount change
-  const handleDonationChange = (e) => {
+  const handleDonationChange = (e: any) => {
     setDonationAmount(e.target.value);
   };
 
   // Handle donation submission
-  const handleDonate = async (e) => {
+  const handleDonate = async (e: any) => {
     e.preventDefault();
 
     if (!donationAmount || isNaN(donationAmount) || donationAmount <= 0) {

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { LayoutDashboard, Users, DollarSign, Plus, Menu } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Plus, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import axios from "axios";
 import {
   Table,
@@ -26,7 +25,7 @@ import { Label } from "@/components/ui/label";
 const API_BASE_URL = "http://127.0.0.1:8000";
 
 const CareAIDashboard = () => {
-  const [donations, setDonations] = useState([]);
+  const [donations, setDonations] = useState<any>([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [newDonation, setNewDonation] = useState({
     patientId: "",
@@ -107,7 +106,7 @@ const CareAIDashboard = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {patients?.map((patient) => (
+                  {patients?.map((patient: any) => (
                     <TableRow className="text-md" key={patient.id}>
                       <TableCell>{patient?.id}</TableCell>
                       <TableCell>{patient?.disease}</TableCell>
@@ -117,7 +116,7 @@ const CareAIDashboard = () => {
                             patient.severityScore > 7
                               ? "destructive"
                               : patient.severityScore > 4
-                              ? "warning"
+                              ? "default"
                               : "secondary"
                           }
                         >
@@ -130,7 +129,7 @@ const CareAIDashboard = () => {
                             patient.priorityScore > 7
                               ? "destructive"
                               : patient.priorityScore > 4
-                              ? "warning"
+                              ? "default"
                               : "secondary"
                           }
                         >
@@ -219,7 +218,7 @@ const CareAIDashboard = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {donations.map((donation) => (
+                    {donations.map((donation: any) => (
                       <TableRow key={donation.id}>
                         <TableCell>{donation.patientId}</TableCell>
                         <TableCell>${donation.amount.toFixed(2)}</TableCell>

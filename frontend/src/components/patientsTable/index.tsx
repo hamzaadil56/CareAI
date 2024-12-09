@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -21,11 +20,6 @@ const PatientsTable = ({ changed }: { changed: boolean }) => {
     return response.data;
   };
   // Helper function to determine badge variant based on score
-  const getBadgeVariant = (score) => {
-    if (score > 7) return "destructive";
-    if (score > 4) return "warning";
-    return "secondary";
-  };
 
   useEffect(() => {
     const loadData = async () => {
