@@ -14,6 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import PatientsTable from "@/components/patientsTable";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 // Zod schema for form validation
 const patientRegistrationSchema = z.object({
   disease: z
@@ -58,7 +60,7 @@ const AdminPage = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/patients/register-patient",
+        `${API_BASE_URL}/patients/register-patient`,
         {
           method: "POST",
           headers: {

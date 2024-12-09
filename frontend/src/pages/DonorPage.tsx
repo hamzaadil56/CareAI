@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import PatientsTable from "@/components/patientsTable";
 
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const DonorPage = () => {
   const [donationAmount, setDonationAmount] = useState<any>("");
   const [message, setMessage] = useState("");
@@ -29,7 +31,7 @@ const DonorPage = () => {
 
       // Call the donate API
       const response = await axios.post(
-        "http://127.0.0.1:8000/donors/donate",
+        `${API_BASE_URL}/donors/donate`,
         donationData
       );
 
