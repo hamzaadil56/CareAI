@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import numpy as np
 from langchain_community.document_loaders import UnstructuredExcelLoader, CSVLoader
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
