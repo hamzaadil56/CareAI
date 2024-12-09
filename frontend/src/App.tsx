@@ -1,66 +1,66 @@
-import { useState, useEffect } from "react";
-import { Plus, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import axios from "axios";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+// import { useState, useEffect } from "react";
+// import { Plus, Menu } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import axios from "axios";
+// import {
+//   Table,
+//   TableBody,
+//   TableCell,
+//   TableHead,
+//   TableHeader,
+//   TableRow,
+// } from "@/components/ui/table";
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from "@/components/ui/dialog";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
 import { Navigate } from "react-router-dom";
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+// const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CareAIDashboard = () => {
-  const [donations, setDonations] = useState<any>([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-  const [newDonation, setNewDonation] = useState({
-    patientId: "",
-    amount: "",
-  });
-  const [patients, setPatients] = useState([]);
+  // const [donations, setDonations] = useState<any>([]);
+  // // const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  // const [newDonation, setNewDonation] = useState({
+  //   patientId: "",
+  //   amount: "",
+  // });
+  // const [patients, setPatients] = useState([]);
 
-  const handleAddDonation = () => {
-    if (newDonation.patientId && newDonation.amount) {
-      setDonations([
-        ...donations,
-        {
-          id: donations.length + 1,
-          patientId: newDonation.patientId,
-          amount: parseFloat(newDonation.amount),
-        },
-      ]);
-      // Reset form
-      setNewDonation({ patientId: "", amount: "" });
-    }
-  };
+  // const handleAddDonation = () => {
+  //   if (newDonation.patientId && newDonation.amount) {
+  //     setDonations([
+  //       ...donations,
+  //       {
+  //         id: donations.length + 1,
+  //         patientId: newDonation.patientId,
+  //         amount: parseFloat(newDonation.amount),
+  //       },
+  //     ]);
+  //     // Reset form
+  //     setNewDonation({ patientId: "", amount: "" });
+  //   }
+  // };
 
-  const fetchPatientsData = async () => {
-    const response = await axios.get(`${API_BASE_URL}/patients`);
-    return response.data;
-  };
+  // const fetchPatientsData = async () => {
+  //   const response = await axios.get(`${API_BASE_URL}/patients`);
+  //   return response.data;
+  // };
 
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await fetchPatientsData();
-      setPatients(data);
-    };
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   const loadData = async () => {
+  //     const data = await fetchPatientsData();
+  //     setPatients(data);
+  //   };
+  //   loadData();
+  // }, []);
 
   return (
     // <div>
