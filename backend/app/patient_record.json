@@ -1,0 +1,50 @@
+[
+    {
+        "disease": "Kidney Failure",
+        "symptoms": "Severe Fatigue, swelling, reduced urine output",
+        "duration": "9 months",
+        "amount_required": 20000.0,
+        "amount_paid": 18000.0,
+        "treatment": "Dialysis and Transplant",
+        "id": 1,
+        "donation_allotted": 10000.0,
+        "severity_score": 9,
+        "priority_score": 9
+    },
+    {
+        "disease": "Congenital Heart Disease",
+        "symptoms": "Breathing difficulty, fatigue, fainting episodes",
+        "duration": "1 year",
+        "amount_required": 25000.0,
+        "amount_paid": 8000.0,
+        "treatment": "Heart Valve Replacement",
+        "id": 2,
+        "donation_allotted": 0,
+        "severity_score": 8,
+        "priority_score": 8
+    },
+    {
+        "disease": "Rheumatoid Arthritis",
+        "symptoms": "Joint deformity, severe pain, reduced mobility",
+        "duration": "2 years",
+        "amount_required": 9000.0,
+        "amount_paid": 3500.0,
+        "treatment": "Joint Replacement Surgery",
+        "id": 3,
+        "donation_allotted": 0,
+        "severity_score": 8,
+        "priority_score": 7
+    },
+    {
+        "disease": "Leukemia",
+        "symptoms": "Frequent Infections, fatigue, easy bruising",
+        "duration": "1 year",
+        "amount_required": 35000.0,
+        "amount_paid": 15000.0,
+        "treatment": "Bone Marrow Transplant",
+        "id": 4,
+        "donation_allotted": 0,
+        "severity_score": 8,
+        "priority_score": 8
+    }
+]

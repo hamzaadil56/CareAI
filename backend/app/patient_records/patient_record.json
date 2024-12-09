@@ -1,0 +1,11 @@
+{
+    "disease": "Cancer",
+    "symptoms": "Fatigue, unexplained weight loss, lump in breast",
+    "duration": "6 months",
+    "amount_required": 3000.0,
+    "amount_paid": 2200.0,
+    "treatment": "Chemotherapy",
+    "id": 1,
+    "donation_allotted": 0,
+    "severity_score": 8
+}

@@ -13,8 +13,5 @@ class Patient(BaseModel):
 
 
 class Donation(BaseModel):
-    patient_id: int
-    donor_id: int
+
     amount: float
-
-

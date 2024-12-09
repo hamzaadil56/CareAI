@@ -1,10 +1,19 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from routes import donors, patients
 import uvicorn
 
 app = FastAPI()
 
+# CORS Configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 # Include the routers
 app.include_router(donors.router, prefix="/donors", tags=["Donors"])
 app.include_router(patients.router, prefix="/patients", tags=["Patients"])

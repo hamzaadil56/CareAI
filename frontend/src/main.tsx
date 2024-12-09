@@ -1,11 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 // import LandingPage from "./pages/landing_page";
-import './index.css'
-import App from './App.tsx'
+import "./index.css";
+import App from "./App.tsx";
+import { BrowserRouter, Routes, Route } from "react-router";
+import AdminPage from "./pages/AdminPage.tsx";
+import Dashboard from "./components/layout/Dashboard.tsx";
+import DonorPage from "./pages/DonorPage.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App/>
-  </StrictMode>,
-)
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Dashboard />}>
+          <Route index element={<App />} />
+          <Route path="admin" element={<AdminPage />} />
+          <Route path="donor" element={<DonorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
