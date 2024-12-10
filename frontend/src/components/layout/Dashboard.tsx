@@ -41,7 +41,7 @@ export default function Dashboard() {
                 Patients
               </Button>
               {/* Link to Donor Page */}
-              <Link to="/donors">
+              <Link to="/donor">
                 <Button variant="ghost" className="w-full justify-start text-lg">
                   <DollarSign className="mr-2 h-4 w-4" />
                   Donations
