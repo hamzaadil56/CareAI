@@ -13,8 +13,8 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route element={<Dashboard />}>
-          <Route index element={<App />} />
-          <Route path="admin" element={<AdminPage />} />
+          <Route index element={<AdminPage />} />
+          
           <Route path="donor" element={<DonorPage />} />
         </Route>
       </Routes>
