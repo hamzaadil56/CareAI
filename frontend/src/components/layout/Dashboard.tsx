@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, Link } from "react-router-dom"; // Import Link
 import { useState } from "react";
 import { LayoutDashboard, Users, DollarSign, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -40,10 +40,13 @@ export default function Dashboard() {
                 <Users className="mr-2 h-4 w-4" />
                 Patients
               </Button>
-              <Button variant="ghost" className="w-full justify-start text-lg">
-                <DollarSign className="mr-2 h-4 w-4" />
-                Donations
-              </Button>
+              {/* Link to Donor Page */}
+              <Link to="/donors">
+                <Button variant="ghost" className="w-full justify-start text-lg">
+                  <DollarSign className="mr-2 h-4 w-4" />
+                  Donations
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
